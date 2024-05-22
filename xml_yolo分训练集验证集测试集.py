@@ -15,9 +15,9 @@ xml_config = {
 
 yolo_config = {
     # labels path(labels 的文件夹路径)
-    "labels":r"C:\Users\LazyShark\Desktop\RZB\labels",
+    "labels":r"C:\Users\LazyShark\Desktop\RZB_5\labels",
     # images path(images 的文件夹路径)
-    "images":r"C:\Users\LazyShark\Desktop\RZB\images",
+    "images":r"C:\Users\LazyShark\Desktop\RZB_5\images",
 }
 
 # 划分数据集

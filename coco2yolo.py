@@ -68,6 +68,7 @@
 
 """
 https://blog.csdn.net/qiumokucao/article/details/119151978?spm=1001.2014.3001.5502
+优化版
 COCO 格式的数据集转化为 YOLO 格式的数据集
 --json_path 输入的json文件路径
 --save_path 保存的文件夹名字，默认为当前目录下的labels。
@@ -121,7 +122,8 @@ if __name__ == '__main__':
         anns.setdefault(imgid, []).append(ann)
 
     print('got anns')
-
+    # 将图片的名字写入txt文件中
+    list_file = open(os.path.join(ana_txt_save_path, 'train2017.txt'), 'w')
     for img in tqdm(data['images']):
         filename = img["file_name"]
         img_width = img["width"]
@@ -136,3 +138,5 @@ if __name__ == '__main__':
             box = convert((img_width, img_height), ann["bbox"])
             f_txt.write("%s %s %s %s %s\n" % (id_map[ann["category_id"]], box[0], box[1], box[2], box[3]))
         f_txt.close()
+        list_file.write('G:/coco/images/train2017/%s.jpg\n' % (head))
+    list_file.close()

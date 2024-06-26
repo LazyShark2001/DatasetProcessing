@@ -55,8 +55,8 @@ def xml(suffix = 'jpg'):
     label = set()  # set()是一个集合，没有顺序不含相同元素
     for data_path in data_list:
         xml_path = os.path.join(xml_config['Annotation'], data_path.rsplit('.', 1)[0] + '.xml')
-        label = label | set([i.find('name').text for i in ET.parse(xml_path).findall('object')])  # 获得name的值并填充到一个列表加入set
-
+        # label = label | set([i.find('name').text for i in ET.parse(xml_path).findall('object')])  # 获得name的值并填充到一个列表加入set
+        label = label | set([i.find('name').text for i in ET.parse(xml_path).iter('object')])  # 获得name的值并填充到一个列表加入set
 
     # 写入文件中
     ftrain = open(os.path.join(os.path.dirname(xml_config['JPEGImages']),'train.txt'), 'w')  # 返回上一级目录写文件

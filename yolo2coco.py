@@ -18,7 +18,6 @@ from sklearn.model_selection import train_test_split
 import argparse
 
 
-
 # python yolo2coco.py --root_dir VisDrone2019-DET-train --save_path train.json
 # python yolo2coco.py --root_dir VisDrone2019-DET-val --save_path val.json
 # python yolo2coco.py --root_dir VisDrone2019-DET-test-dev --save_path test.json

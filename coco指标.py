@@ -1,4 +1,5 @@
 '''先运行下面的，将anno中的标签image_id统一，再运行上面'''
+''''''
 
 import argparse
 from pycocotools.coco import COCO

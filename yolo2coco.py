@@ -20,7 +20,7 @@ from sklearn.model_selection import train_test_split
 import argparse
 
 
-# python yolo2coco.py --root_dir VisDrone2019-DET-train --save_path train.json --random_split
+# python yolo2coco.py --root_dir VisDrone2019-DET-train --save_path train.json
 # python yolo2coco.py --root_dir VisDrone2019-DET-val --save_path val.json
 # python yolo2coco.py --root_dir VisDrone2019-DET-test-dev --save_path test.json
 
@@ -29,9 +29,9 @@ parser.add_argument('--root_dir', default='./dataset/valid', type=str,
                     help="root path of images and labels, include ./images and ./labels and classes.txt")
 parser.add_argument('--save_path', type=str, default='./valid.json',
                     help="if not split the dataset, give a path to a json file")
-parser.add_argument('--random_split', default=False, help="random split the dataset, default ratio is 8:1:1")
-parser.add_argument('--split_by_file', default=False,
-                    help="define how to split the dataset, include ./train.txt ./val.txt ./test.txt")
+parser.add_argument('--random_split', action='store_true', help="random split the dataset, default ratio is 8:1:1")
+parser.add_argument('--split_by_file', action='store_true',
+                    help="define how to split the dataset, include ./train.txt ./val.txt ./test.txt ")
 
 arg = parser.parse_args()
 

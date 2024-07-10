@@ -5,7 +5,7 @@ data（任意）
 --XXX.jpg
 labels
 --XXX.txt
--classes.tst
+-classes.txt
 '''
 
 

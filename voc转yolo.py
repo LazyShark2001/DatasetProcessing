@@ -3,7 +3,7 @@ import pickle
 import os
 from os import listdir, getcwd
 from os.path import join
-
+from tqdm import tqdm
 
 def convert(size, box):
     x_center = (box[0] + box[1]) / 2.0
@@ -20,6 +20,7 @@ def convert_annotation(xml_files_path, save_txt_files_path, classes):
     xml_files = os.listdir(xml_files_path)  #  读取xml文件路径下的所有文件，返回文件名列表
     xml_files = [f for f in xml_files if f.endswith('.xml')]  #  保留尾缀为.xml的文件
     print(xml_files)  #  展示文件夹下的所有文件
+    # for xml_name in tqdm(xml_files):  #  遍历整个文件
     for xml_name in xml_files:  #  遍历整个文件
         print(xml_name)  #  输出当前操作的文件
         xml_file = os.path.join(xml_files_path, xml_name)  #  xml_file为改文件的具体路径

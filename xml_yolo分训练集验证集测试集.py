@@ -60,7 +60,7 @@ def xml(suffix = 'jpg'):
 
     # 写入文件中
     ftrain = open(os.path.join(os.path.dirname(xml_config['JPEGImages']),'train.txt'), 'w')  # 返回上一级目录写文件
-    fvalid = open(os.path.join(os.path.dirname(xml_config['JPEGImages']),'valid.txt'), 'w')
+    fvalid = open(os.path.join(os.path.dirname(xml_config['JPEGImages']),'val.txt'), 'w')
     ftest = open(os.path.join(os.path.dirname(xml_config['JPEGImages']),'test.txt'), 'w')
     flabel = open(os.path.join(os.path.dirname(xml_config['JPEGImages']),'label.txt'), 'w')
 

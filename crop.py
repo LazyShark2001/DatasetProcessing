@@ -173,7 +173,7 @@ class GEN_Annotations:
 
 if __name__ == '__main__':
     import tqdm
-    dirsrc= r'C:\Users\LazyShark\Desktop\data_RZB_split\data'      # 待裁剪图像所在目录的上级目录，图像在images文件夹下，标注文件在labelTxt下
+    dirsrc= r'C:\Users\LazyShark\Desktop\data_RZB_split\data'      # 待裁剪图像所在目录的上级目录，图像在JPEGImages文件夹下，标注文件在Anotations下
     dirdst= dirsrc + '//' + 'data_crop'   # 裁剪结果存放目录，格式和原图像目录一样
     if not os.path.exists(dirdst):  # 创建裁剪保存文件夹
         os.mkdir(dirdst)

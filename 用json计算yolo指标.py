@@ -181,7 +181,7 @@ def parse_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--label_coco', type=str, default=r'cocodataset/labels/instances_test2017.json',
                         help='label coco path')
-    parser.add_argument('--pred_coco', type=str, default='RTMDet.pkl', help='pred coco path')
+    parser.add_argument('--pred_coco', type=str, default='runs/detect/val4/predictions.json', help='pred coco path')
     # parser.add_argument('--pred_coco', type=str, default='RTMDet.pkl', help='pred coco path')
     parser.add_argument('--iou', type=float, default=0.7, help='iou threshold')
     parser.add_argument('--conf', type=float, default=0.001, help='conf threshold')

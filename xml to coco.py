@@ -55,7 +55,8 @@ def xml_to_coco(ann_path, class_names):
     :param ann_path:
     :return:
     """
-    class_name_dict = dict(zip(class_names, range(1, len(class_names) + 1)))
+    # class_name_dict = dict(zip(class_names, range(1, len(class_names) + 1)))  #  类别序号从1算起
+    class_name_dict = dict(zip(class_names, range(0, len(class_names)))) #  类别序号从0算起
     print("loading annotations into memory...")
     tic = time.time()
     ann_file_names = get_file_list(ann_path, type=".xml")
@@ -65,7 +66,8 @@ def xml_to_coco(ann_path, class_names):
     annotations = []
     for idx, supercat in enumerate(class_names):
         categories.append(
-            {"supercategory": supercat, "id": idx + 1, "name": supercat}
+            # {"supercategory": supercat, "id": idx + 1, "name": supercat}  #  类别序号从1算起
+            {"supercategory": supercat, "id": idx, "name": supercat}  #  类别序号从0算起
         )
     ann_id = 1
     for idx, xml_name in enumerate(ann_file_names):

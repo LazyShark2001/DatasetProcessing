@@ -3,6 +3,8 @@ from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 import json
 import os
+'''若出现全为0的情况，一定要对其两个文件的类别序号'''
+
 
 def parse_opt():
     parser = argparse.ArgumentParser()

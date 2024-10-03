@@ -1,3 +1,5 @@
+'''在通过coco的json格式和yolo的指标进行互换计算时，一定要注意两个json的类别id是否对齐，images_id是否对齐，这个版本调了images_id。
+若出现全为0的情况，一定要对其两个文件的类别序号'''
 import argparse
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
@@ -6,8 +8,8 @@ import os
 
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--anno_json', type=str, default=r'C:\Users\LazyShark\Desktop\RZB\coco\annotations\instances_test2017.json', help='training model path')
-    parser.add_argument('--pred_json', type=str, default='runs/detect/train4/predictions.json', help='data yaml path')
+    parser.add_argument('--anno_json', type=str, default=r'C:\Users\LazyShark\Desktop\RZBYOLO\cocodataset\labels\instances_test2017.json', help='training model path')
+    parser.add_argument('--pred_json', type=str, default='runs/detect/val4/predictions.json', help='data yaml path')
     parser.add_argument('--endswith', type=str, default='.jpg', help='swith')
 
     return parser.parse_known_args()[0]
@@ -52,7 +54,7 @@ if __name__ == '__main__':
     eval.accumulate()
     eval.summarize()
 
-    os.remove(new_file_path)
+    # os.remove(new_file_path)
 
 
 '''https://blog.csdn.net/weixin_46170504/article/details/136571546'''

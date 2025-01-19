@@ -8,8 +8,8 @@ import os
 
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--anno_json', type=str, default=r'C:\Users\LazyShark\Desktop\RZBYOLO\cocodataset\labels\instances_test2017.json', help='training model path')
-    parser.add_argument('--pred_json', type=str, default='runs/detect/val4/predictions.json', help='data yaml path')
+    parser.add_argument('--anno_json', type=str, default=r'C:\Users\LazyShark\Desktop\RZBYOLO\cocodataset\labels\instances_test2017.json', help='ground truth')
+    parser.add_argument('--pred_json', type=str, default='runs/detect/val4/predictions.json', help='predictions')
     parser.add_argument('--endswith', type=str, default='.jpg', help='swith')
 
     return parser.parse_known_args()[0]

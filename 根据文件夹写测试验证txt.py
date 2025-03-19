@@ -1,12 +1,21 @@
+
+# from ultralytics.models import RTDETR
+# import os
+# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+# if __name__ == '__main__':
+#     # Load a model
+#     model = (RTDETR(r"/home/hy/disk/dick1/project/xgy/rtdetr/runs/detect/train47_ASF_AFF/weights/best.pt"))
+
+#     metrics = model.val(split='test',batch=4, data='DIOR/DIOR.yaml')
 import os
 import glob
 import random
 
 
 def transform(pic_dir, input_file, output_file):
-    train_fileDir = input_file + "\\train\\"
-    valid_fileDir = input_file + "\\val\\"
-    test_fileDir = input_file + "\\test\\"
+    train_fileDir = os.path.join(input_file,'train')
+    valid_fileDir = os.path.join(input_file,'val')
+    test_fileDir = os.path.join(input_file,'test')
     train_pathDir = os.listdir(train_fileDir)
     valid_pathDir = os.listdir(valid_fileDir)
     test_pathDir = os.listdir(test_fileDir)
@@ -26,10 +35,7 @@ def transform(pic_dir, input_file, output_file):
     ftrain.close()
     fvalid.close()
     ftest.close()
-pic_dir = r'C:\Users\Admin123\Desktop\flip_data\images'
-input_file = r'C:\Users\Admin123\Desktop\flip_data\labels'
-output_file = r'C:\Users\Admin123\Desktop\flip_data'
+pic_dir = r'/home/hy/disk/dick1/project/xgy/rtdetr/DIOR/images'
+input_file = r'/home/hy/disk/dick1/project/xgy/rtdetr/DIOR/labels'
+output_file = r'/home/hy/disk/dick1/project/xgy/rtdetr/DIOR'
 transform(pic_dir, input_file, output_file)
-
-
-

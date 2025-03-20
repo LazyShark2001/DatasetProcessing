@@ -1,5 +1,6 @@
 '''在通过coco的json格式和yolo的指标进行互换计算时，一定要注意两个json的类别id是否对齐，images_id是否对齐，这个版本调了images_id。
-若出现全为0的情况，一定要对其两个文件的类别序号'''
+若出现全为0的情况，一定要对其两个文件的类别序号.
+yolo框架中类别ID是从0开始数，json看看是不是从0开始数的'''
 import argparse
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval

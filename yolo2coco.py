@@ -8,6 +8,19 @@ data（任意）
 -labels
 --XXX.txt
 -classes.txt
+
+可以使用
+-dataset
+--train
+---images
+---labels
+--val
+---images
+---labels
+--test
+---images
+---labels
+目录
 '''
 
 

@@ -225,8 +225,20 @@ if __name__ == '__main__':
         label_id_dict[data['image_id']].append(np.array([int(category_id), x_min, y_min, x_max, y_max]))
 
     if pred_coco_json_path.endswith('json'):
+
         with open(pred_coco_json_path) as f:
             pred = json.load(f)
+        dic={}
+        for item in label['images']:
+            dic[item['file_name']] = item
+        for item in pred:
+            # 如果字典中包含 'image_id' 键
+            if 'image_id' in item:
+                # 将 'image_id' 值转换为5位数形式，并在前面用0填充
+                try:
+                    item['image_id'] = dic[item['image_id'] + '.jpg']['id']  # 注意尾缀
+                except:
+                    print(item['image_id'])
         pred_id_dict = {}
         for data in tqdm.tqdm(pred, desc='Process pred...'):
             if data['image_id'] not in pred_id_dict:

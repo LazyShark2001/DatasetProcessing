@@ -63,15 +63,15 @@ pip install -v -e .
 python tools/train.py configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py --auto-scale-lr --amp --cfg-options compile=False
 
 # 单机多卡
-./tools/dist_train.sh configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py 2 --cfg-options compile=False
+bash ./tools/dist_train.sh configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py 2 --cfg-options compile=False
 
 # 单机多卡+AMP
-./tools/dist_train.sh configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py 2 --amp --auto-scale-lr --cfg-options compile=False
+bash ./tools/dist_train.sh configs/faster_rcnn/faster-rcnn_r50_fpn_1x_coco.py 2 --amp --auto-scale-lr --cfg-options compile=False
 
 # 自定义
 python tools/train.py configs/faster_rcnn/faster-rcnn_r50_fpn_build.py --auto-scale-lr --amp --cfg-options compile=False
 
-./tools/dist_train.sh configs/faster_rcnn/faster-rcnn_r50_fpn_build.py 2 --amp --auto-scale-lr --cfg-options compile=False
+bash ./tools/dist_train.sh configs/faster_rcnn/faster-rcnn_r50_fpn_build.py 2 --amp --auto-scale-lr --cfg-options compile=False
 ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 # faster-RCNN推理

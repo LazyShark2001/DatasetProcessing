@@ -14,12 +14,15 @@ data（任意）
 --train
 ---images
 ---labels
+---classes.txt
 --val
 ---images
 ---labels
+---classes.txt
 --test
 ---images
 ---labels
+---classes.txt
 目录
 '''
 
@@ -38,9 +41,9 @@ import argparse
 # python yolo2coco.py --root_dir VisDrone2019-DET-test-dev --save_path test.json
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--root_dir', default='./dataset/valid', type=str,
+parser.add_argument('--root_dir', default=r'C:\Users\LazyShark\Desktop\dataset\test', type=str,
                     help="root path of images and labels, include ./images and ./labels and classes.txt")
-parser.add_argument('--save_path', type=str, default='./valid.json',
+parser.add_argument('--save_path', type=str, default=r'./test.json',
                     help="if not split the dataset, give a path to a json file")
 parser.add_argument('--random_split', action='store_true', help="random split the dataset, default ratio is 8:1:1")
 parser.add_argument('--split_by_file', action='store_true',

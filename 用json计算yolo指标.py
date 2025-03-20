@@ -1,5 +1,7 @@
 '''在通过coco的json格式和yolo的指标进行互换计算时，一定要注意两个json的类别id是否对齐，images_id是否对齐，这个版本调了images_id。
-若出现全为0的情况，一定要对其两个文件的类别序号'''
+若出现全为0的情况，一定要对其两个文件的类别序号
+这段代码的计算逻辑是YOLO标准，在使用之前用json文件计算coco指标.py得到cache.json
+'''
 import os, torch, cv2, math, tqdm, time, shutil, argparse, json, pickle
 import numpy as np
 from prettytable import PrettyTable

@@ -43,9 +43,9 @@ def moveimg(txtDir, savedir):
 
 if __name__ == '__main__':
 
-    fileDir = r"C:\Users\Admin123\Desktop\NEU-DET"  # txt         改
-    labelfile = r'C:\Users\Admin123\Desktop\data_NEU-DET'  # 保存文件      路径
-    moveimg(fileDir, labelfile)
+    txtDir = r"C:\Users\LazyShark\Desktop\RZBYOLO\RZB"  # txt         改
+    datasetfile = r'C:\Users\LazyShark\Desktop\dataset'  # 保存文件      路径
+    moveimg(txtDir, datasetfile)
 
 # with open(r'C:\Users\Admin123\Desktop\NEU-DET\train.txt') as file:
 #     a = file.readlines()

@@ -1,7 +1,13 @@
-'''在通过coco的json格式和yolo的指标进行互换计算时，一定要注意两个json的类别id是否对齐，images_id是否对齐，这个版本调了images_id。
+"""
+在通过coco的json格式和yolo的指标进行互换计算时，一定要注意两个json的类别id是否对齐，images_id是否对齐，这个版本调了images_id。
 若出现全为0的情况，一定要对其两个文件的类别序号
 这段代码的计算逻辑是YOLO标准，在使用之前用json文件计算coco指标.py得到cache.json
-'''
+此代码的逻辑中，保证label_id_dict和pre_id_dict两个字典的key相同即可
+    -*- coding: utf-8 -*-
+    Time    : 2025/3/20 14:45
+    Author  : LazyShark
+    File    : demo.py.py
+"""
 import os, torch, cv2, math, tqdm, time, shutil, argparse, json, pickle
 import numpy as np
 from prettytable import PrettyTable
@@ -181,13 +187,12 @@ def compute_ap(recall, precision):
 
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--label_coco', type=str, default=r'cocodataset/labels/instances_test2017.json',
+    parser.add_argument('--label_coco', type=str, default=r'C:\Users\LazyShark\Desktop\test.json',
                         help='label coco path')
-    parser.add_argument('--pred_coco', type=str, default='runs/detect/val4/predictions.json', help='pred coco path')
-    # parser.add_argument('--pred_coco', type=str, default='RTMDet.pkl', help='pred coco path')
+    parser.add_argument('--pred_coco', type=str, default=r'C:\Users\LazyShark\Desktop\fasterrcnn.pkl', help='pred coco path')
+    # parser.add_argument('--pred_coco', type=str, default='/home/hjj/Desktop/github_code/mmdetection-visdrone/work_dirs/dino-4scale_r50_8xb2-12e_visdrone/test/prediction.pickle', help='pred coco path')
     parser.add_argument('--iou', type=float, default=0.7, help='iou threshold')
     parser.add_argument('--conf', type=float, default=0.001, help='conf threshold')
-    parser.add_argument('--endswith', type=str, default='.jpg', help='swith')
     opt = parser.parse_known_args()[0]
     return opt
 
@@ -199,7 +204,7 @@ if __name__ == '__main__':
     niou = iouv.numel()
     stats = []
 
-    label_coco_json_path, pred_coco_json_path, endswith = opt.label_coco, opt.pred_coco, opt.endswith
+    label_coco_json_path, pred_coco_json_path = opt.label_coco, opt.pred_coco
     with open(label_coco_json_path) as f:
         label = json.load(f)
 
@@ -208,11 +213,8 @@ if __name__ == '__main__':
         classes.append(data['name'])
 
     image_id_hw_dict = {}
-    annotations_id = {}
     for data in label['images']:
         image_id_hw_dict[data['id']] = [data['height'], data['width']]
-        annotations_id[data['id']] = data['file_name']
-
 
     label_id_dict = {}
     for data in tqdm.tqdm(label['annotations'], desc='Process label...'):
@@ -256,7 +258,8 @@ if __name__ == '__main__':
             pred = pickle.load(f)
         pred_id_dict = {}
         for data in tqdm.tqdm(pred, desc='Process pred...'):
-            image_id = os.path.splitext(os.path.basename(data['img_path']))[0]
+            # image_id = os.path.splitext(os.path.basename(data['img_path']))[0]     # 魔导源码
+            image_id = data['img_id']
             if image_id not in pred_id_dict:
                 pred_id_dict[image_id] = []
 
@@ -273,8 +276,6 @@ if __name__ == '__main__':
 
     for idx, image_id in enumerate(tqdm.tqdm(list(image_id_hw_dict.keys()), desc="Cal mAP...")):
         label = np.array(label_id_dict[image_id])
-        if annotations_id[image_id].rstrip(endswith) in pred_id_dict.keys():
-            image_id = annotations_id[image_id].rstrip(endswith)
 
         if image_id not in pred_id_dict:
             pred = np.empty((0, 6))

@@ -31,11 +31,12 @@ def convert_annotation(xml_files_path, save_txt_files_path, classes):
         size = root.find('size')  #  找到root目录下的size节点
         w = int(size.find('width').text)  #  找到size节点下的width节点并得到第一个子元素之前的文本
         h = int(size.find('height').text)  #  找到size节点下的height节点并得到第一个子元素之前的文本
-
+        unmatch = set()
         for obj in root.iter('object'):  #  迭代遍历整个root节点的object节点
-            difficult = obj.find('difficult').text  # 读取difficult
+            # difficult = obj.find('difficult').text  # 读取difficult
             cls = obj.find('name').text  # 读取name
-            if cls not in classes or int(difficult) == 1:  # 如果类不属于或者目标困难, 则不标注
+            if cls not in classes:  # 如果类不属于或者目标困难, 则不标注
+                unmatch.add(cls)
                 continue
             cls_id = classes.index(cls)  # 找到该类对应列表的编号
             xmlbox = obj.find('bndbox')  # 读取文件中的xywh
@@ -45,15 +46,20 @@ def convert_annotation(xml_files_path, save_txt_files_path, classes):
             print(w, h, b)
             bb = convert((w, h), b)  # 转换
             out_txt_f.write(str(cls_id) + " " + " ".join([str(a) for a in bb]) + '\n')
+    return unmatch
 
 
 if __name__ == "__main__":
     # 需要转换的类别，需要一一对应
     # classes1 = ['crazing','inclusion','patches','pitted_surface','rolled-in_scale','scratches']
-    classes1 = ['youwu','jiaoban','huahen','fenbi','chacheyin','quebian','baohua','songruan']
+    classes1 = ['airplane','airport','baseballfield','basketballcourt','bridge','dam','chimney',
+                'Expressway-Service-area','Expressway-toll-station','golffield','groundtrackfield',
+                'harbor','overpass','ship','stadium','storagetank','tenniscourt','trainstation',
+                'vehicle','windmill']
     # 2、voc格式的xml标签文件路径
-    xml_files1 = r'C:\Users\LazyShark\Desktop\RZB\anno'
+    xml_files1 = r'C:\Users\LazyShark\Desktop\Annotations'
     # 3、转化为yolo格式的txt标签文件存储路径
-    save_txt_files1 = r'C:\Users\LazyShark\Desktop\RZB\2'
+    save_txt_files1 = r'C:\Users\LazyShark\Desktop\labels_yzq'
 
-    convert_annotation(xml_files1, save_txt_files1, classes1)
+    unmatch = convert_annotation(xml_files1, save_txt_files1, classes1)
+    print(unmatch)

@@ -6,7 +6,7 @@ import os
 import os.path
 import numpy as np
 import xml.etree.ElementTree as xmlET
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageOps
 
 #'1': 'people', '2': 'people','3': 'bicycle', '4': 'car', '5': 'car',
 # 6':'others','7':'others','8':'others','9':'others','10': 'motor','11':'others'
@@ -44,6 +44,7 @@ for idx in range(len(pathDir)):
 
     image_name = os.path.splitext(filename)[0]  # 将文件名分割出来
     img = Image.open(os.path.join(file_path_img, image_name + '.jpg'))  #读取文件
+    img = ImageOps.exif_transpose(img)  # ✅ 自动按EXIF旋转
 
     draw = ImageDraw.Draw(img)
     for ix in range(len(boxes)):

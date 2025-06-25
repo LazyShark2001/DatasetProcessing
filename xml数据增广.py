@@ -591,7 +591,7 @@ if __name__ == '__main__':
                 dot_index = file.rfind('.')
                 _file_prefix = file[:dot_index]  # 文件名的前缀
                 _file_suffix = file[dot_index:]  # 文件名的后缀
-            img = cv2.imread(pic_path)
+            img = cv2.imread(pic_path)  # 请注意读取方式, 如果是单通道用-1, 去除exif旋转属性
 
             # show_pic(img, coords)  # 显示原图
             while cnt < need_aug_num:  # 继续增强

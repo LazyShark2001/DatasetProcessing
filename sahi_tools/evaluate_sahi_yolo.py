@@ -28,9 +28,9 @@ class COCOEvaluator:
         model_path: str,
         coco_json: str,
         image_dir: str,
-        confidence_threshold: float = 0.3,
-        slice_height: int = 370,
-        slice_width: int = 370,
+        confidence_threshold: float = 0.45,
+        slice_height: int = 640,
+        slice_width: int = 640,
         overlap_height_ratio: float = 0.3,
         overlap_width_ratio: float = 0.3,
     ):
@@ -56,7 +56,7 @@ class COCOEvaluator:
             model_type='yolov8',
             model_path=model_path,
             confidence_threshold=confidence_threshold,
-            # device="cpu",  # Uncomment this to force CPU usage
+            device="cuda:0",
         )
         self.coco_json = coco_json
         self.image_dir = image_dir

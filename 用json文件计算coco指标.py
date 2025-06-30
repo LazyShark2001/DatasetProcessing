@@ -40,6 +40,7 @@ if __name__ == '__main__':
             # 将 'image_id' 值转换为5位数形式，并在前面用0填充
             try:
                 item['image_id'] = dic[item['image_id'] + endswith]['id']  # 注意尾缀
+                # item['category_id'] += 1  # 如果对不齐就加一或减一
             except:
                 print(item['image_id'])
 

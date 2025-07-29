@@ -203,10 +203,11 @@ class DataAugmentForObjectDetection():
             concat = concat.astype(np.int32)
             # 得到旋转后的坐标
             rx, ry, rw, rh = cv2.boundingRect(concat)
-            rx_min = rx
-            ry_min = ry
-            rx_max = rx + rw
-            ry_max = ry + rh
+            # 确保不会越界
+            rx_min = max(0, rx)
+            ry_min = max(0, ry)
+            rx_max = min(rot_img.shape[1] - 1, rx + rw)
+            ry_max = min(rot_img.shape[0] - 1, ry + rh)
             # 加入list中
             rot_bboxes.append([rx_min, ry_min, rx_max, ry_max])
 

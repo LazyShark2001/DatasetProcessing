@@ -39,8 +39,9 @@ def convert_annotation(img_files_path, xml_files_path, save_img_path, save_xml_p
                 continue
             moveimg_img(img_files_path, save_img_path, name)
             moveimg_xml(xml_files_path, save_xml_path, name)
+            print(f"已处理文件: {name}")
             break
-        print(f"已转移文件: {name}")
+
 
 
 if __name__ == "__main__":
